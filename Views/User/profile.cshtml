@@ -1,0 +1,73 @@
+﻿@model Social_website.Models.users
+@{
+    ViewBag.Title = "Index";
+    var answers = Model.Answers.ToList();
+}
+
+<div class="text-center">
+    <img src="~/attach/@Model.ProfilePicture" style="max-block-size: 5rem" />
+    <h1>@Model.Username</h1>
+    <small> @Model.Bio </small>
+    <br />
+    <small>@Model.follow.Count() follows</small>
+    <br />
+    <small>@Model.followers followers</small>
+
+</div>
+<br />
+<br />
+<br />
+
+<form method="post" action="/user/index/@Model.userName_id">
+    <input hidden value="@Session["user_id"]" name="user_id" />
+    <div class="row">
+        <div class="col-5">
+            <input type="text" name="content" class="form-input form-control" />
+        </div>
+        <div class="switch">
+            <input type="checkbox" name="unkown">
+            <label>ask as anonymous</label>
+        </div>
+        <div class="col-5">
+            <input type="submit" class="btn btn-outline-primary" value="Ask">
+        </div>
+    </div>
+</form>
+
+<br />
+<br />
+<br />
+
+@foreach (var item in answers)
+{
+    if (item.Content != null)
+    {
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-11">
+                        @item.Users.Username    
+                    </div>
+                    <div class="col-1">
+                        <form method="post" action="/answer/deleteAnswer/@item.Id">
+                            <input type="submit" value="delete" class="btn btn-outline-danger" />
+                        </form>
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>@item.Questions.Content <small style="font-size:0.5em"> @(item.Questions.unkown == null ? @item.Questions.User.Username : null )</small></p>
+                    <footer class="blockquote-footer" style="font-size:0.5em"> <cite title="Source Title">@item.Questions.CreatedAt</cite></footer>
+                    <p>@item.Content</p>
+                </blockquote>
+            </div>
+        </div>
+        <br />
+        <br />
+    }
+
+   
+}

@@ -1,0 +1,18 @@
+﻿
+@foreach (var item in (List<Social_website.Models.users>)ViewBag.users)
+{
+    <div class="row">
+        <div class="col-1">
+            <img src="~/attach/@item.ProfilePicture" style="max-block-size:50px" />
+        </div>
+        <div class="col-8">
+            <a href="/user/index/@item.userName_id" style="text-decoration:none">
+                <h1 class="col-sm-10">@item.Username</h1>
+                &reg;<small>@item.userName_id</small>
+            </a>
+        </div>
+
+    </div>
+    <hr />
+}
+

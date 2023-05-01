@@ -1,0 +1,97 @@
+﻿@model Social_website.Models.users
+
+<form method="post" action="/authentication/signup" enctype="multipart/form-data">
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>user name</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(n => n.Username, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.ValidationMessageFor(n => n.Username)
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>user id</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(n => n.userName_id, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.ValidationMessageFor(n => n.userName_id)
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>email</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(n => n.Email, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(n => n.Email)
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>password</label>
+        </div>
+        <div class="col-md-4">
+            @Html.PasswordFor(n => n.Password, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(n => n.Password)
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>confirm password</label>
+        </div>
+        <div class="col-md-4">
+            @Html.PasswordFor(n => n.ConfirmPassword, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(n => n.ConfirmPassword)
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>Bio</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextAreaFor(n => n.Bio, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(n => n.Bio)
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3">
+            <label>image</label>
+        </div>
+        <div class="col-md-4">
+            <input type="file" name="profilePicture" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            @Html.ValidationMessageFor(n => n.ProfilePicture)
+        </div>
+    </div>
+
+
+    <input type="submit" value="Sigin Up" class="btn btn-outline-primary" />
+
+</form>
+
+
+@*@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}*@

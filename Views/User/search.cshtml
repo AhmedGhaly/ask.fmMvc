@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "search";
+}
+
+<h2>search</h2>
+
+
+
+<input id="searchBar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+
+<div id="searchuser">
+
+</div>
+
+@section scripts {
+    <script>
+        $("#searchBar").keyup(() => {
+            let value = $("#searchBar").val();
+
+            if (value == "")
+                $("#searchuser").hide();
+            else {
+                $("#searchuser").show();
+                $("#searchuser").load("/user/getSearchUser/?user=" + value);
+            }
+        })
+    </script>
+}

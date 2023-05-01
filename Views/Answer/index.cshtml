@@ -1,0 +1,67 @@
+﻿@model Social_website.Models.users
+@{
+    ViewBag.Title = "answers";
+}
+
+
+<h2 class="text-center">my Questions </h2>
+
+
+@foreach (var item in Model.Answers)
+{
+    if (item.Content == null && !Model.block_users.Contains(item.Questions.User))
+    {
+        <form method="post" action="/answer">
+            <input hidden value=@item.Id name="id" />
+            <div class="card">
+                <div class="card-header">
+                    @item.Users.Username
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>@item.Questions.Content <small style="font-size:0.5em"> @(item.Questions.unkown == null ? @item.Questions.User.Username : null )</small></p>
+                       
+                        <footer class="blockquote-footer" style="font-size:0.5em">
+ 
+                           
+                            <cite title="Source Title">
+                                @item.Questions.CreatedAt
+                            </cite>
+                        </footer>
+                    </blockquote>
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="text" class="form-control col-6" name="answer" />
+                        </div>
+                        
+                        <div  class="col-4">
+                            <input type="submit" class="btn btn-outline-info col-2" value="answer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+
+        </form>
+    }
+    @*else
+    {
+        <div class="card">
+            <div class="card-header">
+                @item.Users.Username
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>@item.Questions.Content <small style="font-size:0.5em">@item.Questions.User.Username</small></p>
+                    <footer class="blockquote-footer" style="font-size:0.5em"> <cite title="Source Title">@item.Questions.CreatedAt</cite></footer>
+                    <p>@item.Content</p>
+                </blockquote>
+            </div>
+        </div>
+        <br />
+        <br />
+    }*@
+
+
+}

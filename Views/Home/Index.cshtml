@@ -1,0 +1,27 @@
+﻿@model List<Social_website.Models.answers>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@foreach (var item in Model)
+{
+    if(item.Content != null) 
+    {
+        <div class="card">
+            <div class="card-header">
+                <a href="/user/index/@item.Users.userName_id" style="text-decoration:none"> @item.Users.Username </a>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>@item.Questions.Content <small style="font-size:0.5em">  @(item.Questions.unkown == null ? @item.Questions.User.Username : null ) </small></p>
+                    <footer class="blockquote-footer"  style="font-size:0.5em" > <cite title="Source Title">@item.Questions.CreatedAt</cite></footer>
+                    <p>@item.Content</p>
+                </blockquote>
+            </div>
+        </div>
+        <br />
+        <br />
+    }
+}
